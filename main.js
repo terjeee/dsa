@@ -32,4 +32,18 @@ function logFirstThreeBoxes(boxes) {
   console.log(boxes[2]); // operation 3
 }
 
-logFirstThreeBoxes(boxes); // O(3) = O(1)
+// logFirstThreeBoxes(boxes); // O(3) = O(1)
+
+// 2. O(n^2) - quadratic time complexity
+// 2. O(n^2) - quadratic time complexity
+
+function logAllPairsOfArray(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      console.log(`pair ${i}: ${array[i]}${array[j]}`)
+    }
+  }
+} 
+
+const letterArray = ["a", "b", "c", "d", "e"];
+logAllPairsOfArray(letterArray);
