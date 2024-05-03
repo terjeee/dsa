@@ -46,4 +46,27 @@ function logAllPairsOfArray(array) {
 } 
 
 const letterArray = ["a", "b", "c", "d", "e"];
-logAllPairsOfArray(letterArray);
+// logAllPairsOfArray(letterArray);
+
+// Space Complexity
+// Space Complexity
+
+function boo(n) {
+  for (let i = 0; i < n.length; i++ ) {
+    console.log("boo!");
+  }
+}
+
+boo([1, 2, 3, 4 ,5]) // O(1) Space COmplexity 
+
+function arrayOfHiNTimes(n) {
+  let hiArray = [];
+
+  for (let i = 0; i < n; i++) {
+    hiArray[i] = "hi";
+  }
+
+  return hiArray;
+}
+
+console.log(arrayOfHiNTimes(5)); // 0(n) Space Complexity
