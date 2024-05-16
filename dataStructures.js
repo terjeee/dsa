@@ -15,3 +15,29 @@ console.log(arrayStrings);
 
 // Static Array - memory allocated (array lewngth) at initialization. 
 // Dynamic Array - automatically allocates memory on change 
+
+// reverse string test
+// reverse string test
+
+function reverseString(str) {
+  const reversedString = [];
+  let index = 0;
+  
+  if (str.length < 2 || typeof str !== "string") return console.log(":(");
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversedString[index] = str[i];
+    index++;
+  }
+
+  console.log(str.split(""));
+  console.log(reversedString); 
+};
+
+reverseString("hei");
+reverseString("");
+reverseString(false);
+reverseString(9);
+
+((str) => console.log([...str].reverse().join("")))("hello world");
+((str) => console.log([...str].reverse().join("")))("dlrow olleh");
