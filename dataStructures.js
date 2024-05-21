@@ -1,5 +1,5 @@
-// Array
-// Array
+// - Array
+// - Array
 
 const arrayStrings = ['a', 'b', 'c', 'b'];
 
@@ -8,16 +8,16 @@ arrayStrings[2]; // look-up: O(1)
 arrayStrings.push("e"); // add "e" at the end: O(1) NBNBNB: O(n) if Static Array
 arrayStrings.pop(); // remove last: O(1)
 arrayStrings.unshift("x"); // add "x" at the start of array: O(n)
-arrayStrings.shift(); // Oremove first index in sarray: O(1)
+arrayStrings.shift(); // remove first index in sarray: O(n)
 arrayStrings.splice(2, 0, "splice") // insert "splice" after index2: O(n/2) = O(n)
 
-console.log(arrayStrings);
+// console.log(arrayStrings);
 
 // Static Array - memory allocated (array lewngth) at initialization. 
 // Dynamic Array - automatically allocates memory on change 
 
-// reverse string test
-// reverse string test
+// - reverseString
+// - reverseString 
 
 function reverseString(str) {
   const reversedString = [];
@@ -34,10 +34,40 @@ function reverseString(str) {
   console.log(reversedString); 
 };
 
-reverseString("hei");
-reverseString("");
-reverseString(false);
-reverseString(9);
+// reverseString("hei");
+// reverseString("");
+// reverseString(false);
+// reverseString(9);
+// ((str) => console.log([...str].reverse().join("")))("hello world");
+// ((str) => console.log([...str].reverse().join("")))("dlrow olleh");
 
-((str) => console.log([...str].reverse().join("")))("hello world");
-((str) => console.log([...str].reverse().join("")))("dlrow olleh");
+// mergeSortedArray
+// mergeSortedArray
+
+function mergeSortedArrays(array1, array2) {
+  const mergedArray = [];
+
+  let array1Index = 0
+  let array2Index = 0
+  let array1Item = array1[array1Index];
+  let array2Item = array2[array2Index];
+
+  if (array1.length === 0) return array2;
+  if (array2.length === 0) return array1;
+  
+  while (array1Item || array2Item) {
+    if (!array2Item || (array1Item < array2Item)) {
+      mergedArray.push(array1Item);
+      array1Index++;
+      array1Item = array1[array1Index];
+    } else {
+      mergedArray.push(array2Item);
+      array2Index++;
+      array2Item = array2[array2Index];
+    }
+  }
+
+  return mergedArray;
+}
+
+console.log(mergeSortedArrays([0, 3, 4, 31], [4, 4, 4, 6, 30]))
