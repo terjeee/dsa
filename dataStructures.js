@@ -90,7 +90,7 @@ class LinkedList {
     this.length = 1;
   }
 
-  printList() {
+  list() {
     const array = [];
     let currentNode = this.head;
 
@@ -108,7 +108,7 @@ class LinkedList {
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
-    return this.printList();
+    return this.list();
   }
 
   prepend(value) {
@@ -117,7 +117,7 @@ class LinkedList {
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
-    return this.printList();
+    return this.list();
   }
 
   insert(index, value) {
@@ -133,10 +133,40 @@ class LinkedList {
         currentNode.next = newNode;
         this.length++;
 
-        return this.printList();
+        return this.list();
       }
 
       currentNode = currentNode.next;
+    }
+  }
+
+  remove(index) {
+    if (index < 0 || index > this.length - 1) return "Index out of bounds";
+
+    let currentNode = this.head;
+
+    for (let i = 0; i < this.length; i++) {
+      if (index === 0) {
+        this.head = currentNode.next;
+
+        this.length--;
+        return this.list();
+      } else if (i === this.length - 1) {
+        console.log("hei");
+        console.log(currentNode.value);
+        currentNode.next = null;
+
+        this.length--;
+        return this.list();
+      } else if (index === i + 1) {
+        const unwantedNode = currentNode.next;
+        currentNode.next = unwantedNode.next;
+
+        this.length--;
+        return this.list();
+      } else {
+        currentNode = currentNode.next;
+      }
     }
   }
 }
@@ -145,7 +175,10 @@ const myLinkedList = new LinkedList(1);
 myLinkedList.append(2);
 myLinkedList.append(3);
 myLinkedList.prepend(0);
-console.log(myLinkedList.printList());
+console.log(myLinkedList.list());
 console.log(myLinkedList.insert(2, 100));
 console.log(myLinkedList.insert(3, 99));
 console.log(myLinkedList.insert(10, 2727));
+console.log(myLinkedList.remove(0));
+console.log(myLinkedList.remove(4));
+console.log(myLinkedList.remove(4));
