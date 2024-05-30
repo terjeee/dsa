@@ -1,7 +1,7 @@
 // - Array
 // - Array
 
-const arrayStrings = ['a', 'b', 'c', 'b'];
+const arrayStrings = ["a", "b", "c", "b"];
 
 // array methods: BigO
 arrayStrings[2]; // look-up: O(1)
@@ -9,20 +9,20 @@ arrayStrings.push("e"); // add "e" at the end: O(1) NBNBNB: O(n) if Static Array
 arrayStrings.pop(); // remove last: O(1)
 arrayStrings.unshift("x"); // add "x" at the start of array: O(n)
 arrayStrings.shift(); // remove first index in sarray: O(n)
-arrayStrings.splice(2, 0, "splice") // insert "splice" after index2: O(n/2) = O(n)
+arrayStrings.splice(2, 0, "splice"); // insert "splice" after index2: O(n/2) = O(n)
 
 // console.log(arrayStrings);
 
-// Static Array - memory allocated (array lewngth) at initialization. 
-// Dynamic Array - automatically allocates memory on change 
+// Static Array - memory allocated (array lewngth) at initialization.
+// Dynamic Array - automatically allocates memory on change
 
 // - reverseString
-// - reverseString 
+// - reverseString
 
 function reverseString(str) {
   const reversedString = [];
   let index = 0;
-  
+
   if (str.length < 2 || typeof str !== "string") return console.log(":(");
 
   for (let i = str.length - 1; i >= 0; i--) {
@@ -31,8 +31,8 @@ function reverseString(str) {
   }
 
   console.log(str.split(""));
-  console.log(reversedString); 
-};
+  console.log(reversedString);
+}
 
 // reverseString("hei");
 // reverseString("");
@@ -47,16 +47,16 @@ function reverseString(str) {
 function mergeSortedArrays(array1, array2) {
   const mergedArray = [];
 
-  let array1Index = 0
-  let array2Index = 0
+  let array1Index = 0;
+  let array2Index = 0;
   let array1Item = array1[array1Index];
   let array2Item = array2[array2Index];
 
   if (array1.length === 0) return array2;
   if (array2.length === 0) return array1;
-  
+
   while (array1Item || array2Item) {
-    if (!array2Item || (array1Item < array2Item)) {
+    if (!array2Item || array1Item < array2Item) {
       mergedArray.push(array1Item);
       array1Index++;
       array1Item = array1[array1Index];
@@ -72,24 +72,34 @@ function mergeSortedArrays(array1, array2) {
 
 // console.log(mergeSortedArrays([0, 3, 4, 31], [4, 4, 4, 6, 30]))
 
-
 // Linked list
 // Linked list
 
 class Node {
   constructor(value) {
-    this.value = value,
-    this.next = null
+    (this.value = value), (this.next = null);
   }
 }
 class LinkedList {
   constructor(value) {
     this.head = {
       value: value,
-      next: null
-    }
+      next: null,
+    };
     this.tail = this.head;
     this.length = 1;
+  }
+
+  printList() {
+    const array = [];
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      array.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+
+    return array;
   }
 
   append(value) {
@@ -98,7 +108,7 @@ class LinkedList {
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
-    return this;
+    return this.printList();
   }
 
   prepend(value) {
@@ -107,12 +117,35 @@ class LinkedList {
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
-    return this;
+    return this.printList();
+  }
+
+  insert(index, value) {
+    if (index == 0) return this.prepend(value);
+    if (index >= this.length - 1) return this.append(value);
+
+    const newNode = new Node(value);
+    let currentNode = this.head;
+
+    for (let i = 0; i < this.length - 1; i++) {
+      if (index === i + 1) {
+        newNode.next = currentNode.next;
+        currentNode.next = newNode;
+        this.length++;
+
+        return this.printList();
+      }
+
+      currentNode = currentNode.next;
+    }
   }
 }
 
 const myLinkedList = new LinkedList(1);
-console.log(myLinkedList);
-console.log(myLinkedList.append(2));
-console.log(myLinkedList.append(3));
-console.log(myLinkedList.prepend(0));
+myLinkedList.append(2);
+myLinkedList.append(3);
+myLinkedList.prepend(0);
+console.log(myLinkedList.printList());
+console.log(myLinkedList.insert(2, 100));
+console.log(myLinkedList.insert(3, 99));
+console.log(myLinkedList.insert(10, 2727));
