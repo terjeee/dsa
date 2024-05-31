@@ -77,7 +77,9 @@ function mergeSortedArrays(array1, array2) {
 
 class Node {
   constructor(value) {
-    (this.value = value), (this.next = null);
+    this.value = value;
+    this.next = null;
+    this.previous = null;
   }
 }
 class LinkedList {
@@ -85,6 +87,7 @@ class LinkedList {
     this.head = {
       value: value,
       next: null,
+      previous: null,
     };
     this.tail = this.head;
     this.length = 1;
@@ -95,7 +98,12 @@ class LinkedList {
     let currentNode = this.head;
 
     while (currentNode !== null) {
-      array.push(currentNode.value);
+      array.push({
+        value: currentNode.value,
+        previous: currentNode.previous,
+        next: currentNode.next,
+      });
+
       currentNode = currentNode.next;
     }
 
@@ -105,6 +113,7 @@ class LinkedList {
   append(value) {
     const newNode = new Node(value);
 
+    newNode.previous = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
@@ -115,6 +124,7 @@ class LinkedList {
     const newNode = new Node(value);
 
     newNode.next = this.head;
+    this.head.previous = newNode;
     this.head = newNode;
     this.length++;
     return this.list();
@@ -122,21 +132,25 @@ class LinkedList {
 
   insert(index, value) {
     if (index == 0) return this.prepend(value);
-    if (index >= this.length - 1) return this.append(value);
+    if (index > this.length - 1) return this.append(value);
 
     const newNode = new Node(value);
     let currentNode = this.head;
+    let nextNode = currentNode?.next;
 
     for (let i = 0; i < this.length - 1; i++) {
       if (index === i + 1) {
         newNode.next = currentNode.next;
+        newNode.previous = currentNode;
         currentNode.next = newNode;
+        nextNode.previous = newNode;
         this.length++;
 
         return this.list();
       }
 
       currentNode = currentNode.next;
+      nextNode = currentNode.next;
     }
   }
 
@@ -175,10 +189,10 @@ const myLinkedList = new LinkedList(1);
 myLinkedList.append(2);
 myLinkedList.append(3);
 myLinkedList.prepend(0);
+myLinkedList.insert(1, 100);
+myLinkedList.insert(2, 99);
+myLinkedList.insert(10, 100);
+myLinkedList.insert(10, 2727);
+// myLinkedList.remove(0);
+// myLinkedList.remove(4);
 console.log(myLinkedList.list());
-console.log(myLinkedList.insert(2, 100));
-console.log(myLinkedList.insert(3, 99));
-console.log(myLinkedList.insert(10, 2727));
-console.log(myLinkedList.remove(0));
-console.log(myLinkedList.remove(4));
-console.log(myLinkedList.remove(4));
