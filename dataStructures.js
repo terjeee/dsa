@@ -110,6 +110,19 @@ class LinkedList {
     return array;
   }
 
+  listValues() {
+    const array = [];
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      array.push(currentNode.value);
+
+      currentNode = currentNode.next;
+    }
+
+    return array;
+  }
+
   append(value) {
     const newNode = new Node(value);
 
@@ -131,7 +144,7 @@ class LinkedList {
   }
 
   insert(index, value) {
-    if (index == 0) return this.prepend(value);
+    if (index <= 0) return this.prepend(value);
     if (index > this.length - 1) return this.append(value);
 
     const newNode = new Node(value);
@@ -155,26 +168,28 @@ class LinkedList {
   }
 
   remove(index) {
-    if (index < 0 || index > this.length - 1) return "Index out of bounds";
+    if (index < 0 || index > this.length - 1) return console.log("Index out of bounds");
 
     let currentNode = this.head;
 
     for (let i = 0; i < this.length; i++) {
       if (index === 0) {
-        this.head = currentNode.next;
+        this.head = this.head.next;
+        this.head.previous = null;
 
         this.length--;
         return this.list();
-      } else if (i === this.length - 1) {
-        console.log("hei");
-        console.log(currentNode.value);
-        currentNode.next = null;
+      } else if (index === this.length - 1) {
+        this.tail = this.tail.previous;
+        this.tail.next = null;
 
         this.length--;
         return this.list();
       } else if (index === i + 1) {
         const unwantedNode = currentNode.next;
+        const nextNode = unwantedNode.next;
         currentNode.next = unwantedNode.next;
+        nextNode.previous = currentNode;
 
         this.length--;
         return this.list();
@@ -187,12 +202,18 @@ class LinkedList {
 
 const myLinkedList = new LinkedList(1);
 myLinkedList.append(2);
-myLinkedList.append(3);
+// myLinkedList.append(3);
 myLinkedList.prepend(0);
 myLinkedList.insert(1, 100);
-myLinkedList.insert(2, 99);
-myLinkedList.insert(10, 100);
-myLinkedList.insert(10, 2727);
-// myLinkedList.remove(0);
-// myLinkedList.remove(4);
-console.log(myLinkedList.list());
+myLinkedList.insert(-50, -200);
+myLinkedList.insert(10, 300);
+// myLinkedList.insert(10, 2727);
+myLinkedList.remove(0);
+myLinkedList.remove(1);
+myLinkedList.remove(-4000);
+myLinkedList.remove(4000);
+myLinkedList.remove(3);
+// console.log(myLinkedList.list());
+console.log(myLinkedList.listValues());
+// myLinkedList.reverse();
+console.log(myLinkedList.listValues());
