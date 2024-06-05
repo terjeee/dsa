@@ -198,6 +198,35 @@ class LinkedList {
       }
     }
   }
+
+  reverse() {
+    // this.head = this.tail;
+    // this.tail = this.head;
+
+    if (!this.head.next) return this.list();
+
+    this.tail = this.head;
+
+    let firstNode = this.head;
+    let secondNode = firstNode.next;
+
+    while (secondNode) {
+      const temp = secondNode.next;
+
+      secondNode.next = firstNode;
+      firstNode = secondNode;
+      secondNode = temp;
+    }
+
+    this.head.next = null;
+    this.head = firstNode;
+
+    return this.list();
+
+    // for (let i = 0; i < this.length; i++) {
+    //   currentNode
+    // }
+  }
 }
 
 const myLinkedList = new LinkedList(1);
@@ -215,5 +244,5 @@ myLinkedList.remove(4000);
 myLinkedList.remove(3);
 // console.log(myLinkedList.list());
 console.log(myLinkedList.listValues());
-// myLinkedList.reverse();
+myLinkedList.reverse();
 console.log(myLinkedList.listValues());
