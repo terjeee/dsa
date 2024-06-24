@@ -229,20 +229,81 @@ class LinkedList {
   }
 }
 
-const myLinkedList = new LinkedList(1);
-myLinkedList.append(2);
+// const myLinkedList = new LinkedList(1);
+// myLinkedList.append(2);
 // myLinkedList.append(3);
-myLinkedList.prepend(0);
-myLinkedList.insert(1, 100);
-myLinkedList.insert(-50, -200);
-myLinkedList.insert(10, 300);
+// myLinkedList.prepend(0);
+// myLinkedList.insert(1, 100);
+// myLinkedList.insert(-50, -200);
+// myLinkedList.insert(10, 300);
 // myLinkedList.insert(10, 2727);
-myLinkedList.remove(0);
-myLinkedList.remove(1);
-myLinkedList.remove(-4000);
-myLinkedList.remove(4000);
-myLinkedList.remove(3);
+// myLinkedList.remove(0);
+// myLinkedList.remove(1);
+// myLinkedList.remove(-4000);
+// myLinkedList.remove(4000);
+// myLinkedList.remove(3);
 // console.log(myLinkedList.list());
-console.log(myLinkedList.listValues());
-myLinkedList.reverse();
-console.log(myLinkedList.listValues());
+// console.log(myLinkedList.listValues());
+// myLinkedList.reverse();
+// console.log(myLinkedList.listValues());
+
+//  Stack
+//  Stack
+
+class Node2 {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.previous = null;
+  }
+}
+
+class Stack {
+  constructor() {
+    this.top = null;
+    this.bottom = null;
+    this.length = 0;
+  }
+
+  peek() {
+    if (this.length < 1) return;
+
+    return {
+      top: this.top,
+      bottom: this.bottom,
+    };
+  }
+
+  push(value) {
+    const newNode = new Node2(value);
+
+    if (this.length < 1) {
+      this.top = newNode;
+      this.bottom = newNode;
+    } else {
+      newNode.previous = this.top;
+      this.top.next = newNode;
+      this.top = newNode;
+    }
+
+    this.length++;
+  }
+
+  pop() {
+    if (this.length < 1) return;
+
+    this.top = this.top.previous;
+    this.top.next = null;
+
+    this.length--;
+  }
+}
+
+const stack = new Stack();
+
+console.log(stack);
+stack.push("1");
+stack.push("2");
+console.log(stack.peek());
+stack.pop();
+console.log(stack.peek());
