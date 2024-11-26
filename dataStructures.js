@@ -258,7 +258,7 @@ class Node2 {
   }
 }
 
-class Stack {
+class StackLinkedList {
   constructor() {
     this.top = null;
     this.bottom = null;
@@ -299,11 +299,43 @@ class Stack {
   }
 }
 
-const stack = new Stack();
+// const stackLinkedList = new StackLinkedList();
 
-console.log(stack);
-stack.push("1");
-stack.push("2");
-console.log(stack.peek());
-stack.pop();
-console.log(stack.peek());
+// console.log(stackLinkedList);
+// stackLinkedList.push("1");
+// stackLinkedList.push("2");
+// console.log(stackLinkedList.peek());
+// stackLinkedList.pop();
+// console.log(stackLinkedList.peek());
+
+class StackArray {
+  constructor() {
+    this.stack = [];
+  }
+
+  peek() {
+    if (this.stack.length < 1) return null;
+
+    return this.stack[this.stack.length - 1];
+  }
+
+  push(value) {
+    this.stack.push(value);
+    return this.stack;
+  }
+
+  pop() {
+    if (this.stack.length < 1) return null;
+
+    this.stack.pop();
+    return this.stack;
+  }
+}
+
+const stackArray = new StackArray();
+console.log(stackArray.push(1));
+console.log(stackArray.push(2));
+console.log(stackArray.push(3));
+console.log(stackArray.peek());
+console.log(stackArray.pop());
+console.log(stackArray.peek());
