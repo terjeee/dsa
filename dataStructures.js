@@ -333,9 +333,12 @@ class StackArray {
 }
 
 const stackArray = new StackArray();
-console.log(stackArray.push(1));
-console.log(stackArray.push(2));
-console.log(stackArray.push(3));
-console.log(stackArray.peek());
-console.log(stackArray.pop());
-console.log(stackArray.peek());
+// console.log(stackArray.push(1));
+// console.log(stackArray.push(2));
+// console.log(stackArray.push(3));
+// console.log(stackArray.peek());
+// console.log(stackArray.pop());
+// console.log(stackArray.peek());
+
+// Trees
+// Trees
